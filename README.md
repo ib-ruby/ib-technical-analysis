@@ -9,6 +9,9 @@ It fits perfect into the **_IB-Ruby_** suite, but can be used isolated, too.
 
 
 `IB-Technical-Analysis` calculations are embedded in the `Enumerator`-class.
+The List is simply iterated, the iteration method defines the indicator. 
+
+The algorithms to calculate a single entry are exposed to streaming datasources. 
 
 Thus
 ```ruby
