@@ -4,18 +4,19 @@
 ###
 ### Parameter: t)ws | g)ateway (or number of port ) Default: Gateway ,
 ###							client_id , Default 2000
-###
-### Define Parameter in  file console.yml
-###
 require 'bundler/setup'
 require 'yaml'
 
 require 'logger'
-require "ib-api"
-require 'ib/extensions'
+LogLevel = Logger::DEBUG  ##INFO # DEBUG # ERROR 
+#require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
+
+require 'ib-gateway'
+require 'ib/market-price'
+require 'ib/option-chain'
+require 'ib/eod'
 require 'ib/symbols'
 require 'technical-analysis'
-
 class Array
   # enables calling members of an array. which are hashes  by it name
   # i.e
@@ -35,21 +36,21 @@ class Array
   end
 end # Array
 
-
 # read items from console.yml 
 read_yml = -> (key) do
 		YAML::load_file( File.expand_path('../console.yml',__FILE__))[key]
 	end
 
 
+
   puts 
-  puts ">> IB-Ruby Interactive Console <<" 
+  puts ">> I B – G A T E W A Y  Interactive Console <<" 
   puts '-'* 45
   puts 
   puts "Namespace is IB ! "
   puts
   puts '-'* 45
-	include LogDev
+ 
   include IB
   require 'irb'
   client_id = ARGV[1] || read_yml[:client_id]
@@ -64,37 +65,44 @@ read_yml = -> (key) do
 					end
 
   ARGV.clear
-  logger = default_logger #  Logger.new  STDOUT
+  logger = Logger.new  STDOUT
+  logger.formatter = proc do |level, time, prog, msg|
+      "#{time.strftime('%H:%M:%S')} #{msg}\n"
+	end
+			logger.level = Logger::INFO 
 	
   ## The Block takes instructions which are executed  after initializing all instance-variables
   ## and prior to the connection-process
   ## Here we just subscribe to some events  
-  C =  Connection.new  client_id: client_id, port: port  do |c|  # future use__ , optional_capacities: "+PACEAPI"  do |c|
+	begin
+		G =  Gateway.new  get_account_data: true, serial_array: true,
+			client_id: client_id, port: port, logger: logger,
+			watchlists: [:Spreads, :BuyAndHold]
+	rescue IB::TransmissionError => e
+		puts "E: #{e.inspect}"
+	end
 
-    c.subscribe( :ContractData, :BondContractData) { |msg| logger.info { msg.contract.to_human } }
-    c.subscribe( :Alert, :ContractDataEnd, :ManagedAccounts, :OrderStatus ) {| m| logger.info { m.to_human } }
-    c.subscribe( :PortfolioValue, :AccountValue, :OrderStatus, :OpenOrderEnd, :ExecutionData ) {| m| logger.info { m.to_human }}
-#    c.subscribe :ManagedAccounts do  |msg|
-#        puts "------------------------------- Managed Accounts ----------------------------------"
-#				puts "Detected Accounts: #{msg.accounts.account.join(' -- ')} " 
-#				puts
-#    end
-
-    c.subscribe( :OpenOrder){ |msg|  "Open Order detected and stored: C.received[:OpenOrders] " }
-		c.logger.level = Logger::INFO 
-	end 
+	C =  G.tws
   unless  C.received[:OpenOrder].blank?
         puts "------------------------------- OpenOrders ----------------------------------"
     puts C.received[:OpenOrder].to_human.join "\n"
+    puts  " ---------------- Open Orders are present in G.clients.orders --------------"
+    puts ""
   end
   puts  "Connection established on Port  #{port}, client_id #{client_id} used"
   puts
-  puts  "----> C    points to the connection-instance"
+  puts  "----> G    points to the Gateway-Instance"
+	puts  "----> C    points to the Connection-Instance"
   puts
   puts  "some basic Messages are subscribed and accordingly displayed"
-  puts
+  puts ""
   puts  "Technical Analysis Indicators are included"
   puts '-'* 45
 
   using TASupport
+  begin
   IRB.start(__FILE__)
+  rescue  IB::OrderAttributeError => e
+    puts "OrderAtttributeerror"
+  end
+
