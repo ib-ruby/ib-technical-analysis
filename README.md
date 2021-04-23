@@ -38,6 +38,24 @@ uu.first
 ```
 
 
+### Implemented Indicators
+
+* Simple Moving Average                   
+```ruby
+zz = z.calculate( :sma, period: 15 ) { :close }
+```
+* Exponential Moving Average
+```ruby
+zz = z.calculate( :ema, period: 15 ) { :close }
+```
+* Weighted Moving Average
+```ruby
+zz = z.calculate( :wma, period: 15 ) { :close }
+```
+
+
+
+
 (work in progress)
 
 

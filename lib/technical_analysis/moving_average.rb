@@ -1,6 +1,7 @@
 module TechnicalAnalysis
 
   module MovingAverage 
+    SMA = Struct.new :time, :value
     EMA = Struct.new :time, :value
     WMA = Struct.new :time, :value
 
@@ -40,13 +41,28 @@ module TechnicalAnalysis
     # z = Symbols::Futures.mini_dax.eod( duration: '30 d').each
     # TechnicalAnalysis::ArrayCalculation.wma( z ){ :close }
     #
-    def self.wma(data)
-      intermediate_values = []
-      data.each_with_index do |datum, i|
-        datum = datum.send yield  if block_given?
-        intermediate_values << datum * (i + 1) / (data.size * (data.size + 1) / 2).to_f
+    def self.wma(current_value, wma_source, period)
+      interim = 0.0
+      wma_source = wma_source[ -period , period ] if wma_source.size > period
+      wma_source.map.with_index do |d, i|
+        d = d.send yield  if block_given?
+        interim += d * (i + 1) / (wma_source.size * (wma_source.size + 1) / 2).to_f
       end
-      intermediate_values.sum
+    end
+
+
+    # calculates the simple moving average of the current value using the data as reference
+    #
+    # if current_value is 
+    def self.sma current_value=nil, data=[], period=15
+      sma_source = if current_value.present?
+                     data.push  current_value  #  add it as last element
+                   else
+                     data
+                   end
+      sma_source = sma_source[ -period , period ] if sma_source.size > period
+      sma_source.sum / sma_source.size .to_f  
+
     end
   end
 end

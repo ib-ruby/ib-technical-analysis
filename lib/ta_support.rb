@@ -24,7 +24,7 @@ module  TASupport
     # zz.first
     #  => #<struct TechnicalAnalysis::MovingAverage::EMA time=Wed, 10 Mar 2021, value=0.149441e5
     def calculate indicator= :ema,  **params
-      struct =  TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase 
+      struct = TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase
       buffer, start = nil, []
       choice = if block_given? 
                  yield  
@@ -33,26 +33,30 @@ module  TASupport
                else
                  nil
                end
-      data = choice.nil? ? self.to_a : map{|y| y.send choice }
+      data = choice.nil? ? self.to_a : map {|y| y.send choice }
       period = params[:period] || 30
-      calc_ema =  ->(item){ buffer= TechnicalAnalysis::MovingAverage.ema item, data, period, buffer  }
-
+      calc_ema = ->(item) { buffer = TechnicalAnalysis::MovingAverage.ema item, data, period, buffer }
+      calc_sma = ->(data_items) { TechnicalAnalysis::MovingAverage.sma nil, data_items, period }
       if peek.respond_to? :time 
         map{ | d |
           value = case indicator
+                  when :sma
+                    calc_sma[ start.push( d.send( choice)) ]
                   when :ema
-                    calc_ema[ d.send choice  ]
+                    calc_ema[ d.send choice ]
                   when :wma
-                    TechnicalAnalysis::MovingAverage.wma start << d.send( choice )
+                    TechnicalAnalysis::MovingAverage.wma( nil, start.push( d.send( choice )), period )
                   end
           struct.new d.time , value
         }#map
       else
         case indicator
+        when :sma
+          map{ | d | start.push( choice.nil? ? d : d.send( choice )) ; calc_sma[ start ] }
         when :ema
-          map{ | d |  calc_ema[  choice.nil? ?  d : d.send( choice ) ] }
+          map{ | d | calc_ema[ choice.nil? ? d : d.send( choice ) ] }
         when :wma
-          map{ |d| TechnicalAnalysis::MovingAverage.wma( start << choice.nil? ?  d : d.send( choice )  ) }
+          map{ |d| TechnicalAnalysis::MovingAverage.wma(nil,  start.push( choice.nil? ? d : d.send( choice ) ), period ) }
         end # case
       end   # branch    
     end     # def
