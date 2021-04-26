@@ -1,0 +1,474 @@
+---
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-02-23
+    :open: !ruby/object:BigDecimal 18:0.6952e3
+    :high: !ruby/object:BigDecimal 18:0.72e3
+    :low: !ruby/object:BigDecimal 18:0.619e3
+    :close: !ruby/object:BigDecimal 18:0.7165e3
+    :volume: 402586
+    :wap: !ruby/object:BigDecimal 18:0.675712e3
+    :trades: 201311
+    :created_at: 2021-04-25 19:01:26.556044419 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-02-24
+    :open: !ruby/object:BigDecimal 18:0.72e3
+    :high: !ruby/object:BigDecimal 18:0.745e3
+    :low: !ruby/object:BigDecimal 18:0.69417e3
+    :close: !ruby/object:BigDecimal 18:0.7382e3
+    :volume: 231864
+    :wap: !ruby/object:BigDecimal 18:0.722053e3
+    :trades: 114629
+    :created_at: 2021-04-25 19:01:26.556159981 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-02-25
+    :open: !ruby/object:BigDecimal 18:0.7415e3
+    :high: !ruby/object:BigDecimal 18:0.74202e3
+    :low: !ruby/object:BigDecimal 18:0.655e3
+    :close: !ruby/object:BigDecimal 18:0.668e3
+    :volume: 232476
+    :wap: !ruby/object:BigDecimal 18:0.701667e3
+    :trades: 115402
+    :created_at: 2021-04-25 19:01:26.556308759 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-02-26
+    :open: !ruby/object:BigDecimal 18:0.67802e3
+    :high: !ruby/object:BigDecimal 18:0.7067e3
+    :low: !ruby/object:BigDecimal 18:0.65951e3
+    :close: !ruby/object:BigDecimal 18:0.6708e3
+    :volume: 256984
+    :wap: !ruby/object:BigDecimal 18:0.680576e3
+    :trades: 123479
+    :created_at: 2021-04-25 19:01:26.556458561 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-01
+    :open: !ruby/object:BigDecimal 18:0.69251e3
+    :high: !ruby/object:BigDecimal 18:0.72544e3
+    :low: !ruby/object:BigDecimal 18:0.68505e3
+    :close: !ruby/object:BigDecimal 18:0.72525e3
+    :volume: 162538
+    :wap: !ruby/object:BigDecimal 18:0.707025e3
+    :trades: 77292
+    :created_at: 2021-04-25 19:01:26.556604498 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-02
+    :open: !ruby/object:BigDecimal 18:0.7165e3
+    :high: !ruby/object:BigDecimal 18:0.72335e3
+    :low: !ruby/object:BigDecimal 18:0.685e3
+    :close: !ruby/object:BigDecimal 18:0.68879e3
+    :volume: 135203
+    :wap: !ruby/object:BigDecimal 18:0.702264e3
+    :trades: 63527
+    :created_at: 2021-04-25 19:01:26.556761303 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-03
+    :open: !ruby/object:BigDecimal 18:0.699e3
+    :high: !ruby/object:BigDecimal 18:0.7025e3
+    :low: !ruby/object:BigDecimal 18:0.64912e3
+    :close: !ruby/object:BigDecimal 18:0.65393e3
+    :volume: 173838
+    :wap: !ruby/object:BigDecimal 18:0.676208e3
+    :trades: 84017
+    :created_at: 2021-04-25 19:01:26.556942518 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-04
+    :open: !ruby/object:BigDecimal 18:0.65481e3
+    :high: !ruby/object:BigDecimal 18:0.66845e3
+    :low: !ruby/object:BigDecimal 18:0.6e3
+    :close: !ruby/object:BigDecimal 18:0.6001e3
+    :volume: 402358
+    :wap: !ruby/object:BigDecimal 18:0.625927e3
+    :trades: 186812
+    :created_at: 2021-04-25 19:01:26.557092786 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-05
+    :open: !ruby/object:BigDecimal 18:0.6105e3
+    :high: !ruby/object:BigDecimal 18:0.63222e3
+    :low: !ruby/object:BigDecimal 18:0.53955e3
+    :close: !ruby/object:BigDecimal 18:0.59625e3
+    :volume: 553257
+    :wap: !ruby/object:BigDecimal 18:0.583785e3
+    :trades: 256666
+    :created_at: 2021-04-25 19:01:26.557357100 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-08
+    :open: !ruby/object:BigDecimal 18:0.5832e3
+    :high: !ruby/object:BigDecimal 18:0.62013e3
+    :low: !ruby/object:BigDecimal 18:0.554e3
+    :close: !ruby/object:BigDecimal 18:0.567e3
+    :volume: 330308
+    :wap: !ruby/object:BigDecimal 18:0.587343e3
+    :trades: 151244
+    :created_at: 2021-04-25 19:01:26.557502715 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-09
+    :open: !ruby/object:BigDecimal 18:0.58116e3
+    :high: !ruby/object:BigDecimal 18:0.6939e3
+    :low: !ruby/object:BigDecimal 18:0.577e3
+    :close: !ruby/object:BigDecimal 18:0.68921e3
+    :volume: 420976
+    :wap: !ruby/object:BigDecimal 18:0.646352e3
+    :trades: 201639
+    :created_at: 2021-04-25 19:01:26.557647015 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-10
+    :open: !ruby/object:BigDecimal 18:0.69157e3
+    :high: !ruby/object:BigDecimal 18:0.71785e3
+    :low: !ruby/object:BigDecimal 18:0.65582e3
+    :close: !ruby/object:BigDecimal 18:0.66456e3
+    :volume: 383824
+    :wap: !ruby/object:BigDecimal 18:0.68375e3
+    :trades: 169647
+    :created_at: 2021-04-25 19:01:26.557790475 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-11
+    :open: !ruby/object:BigDecimal 18:0.687e3
+    :high: !ruby/object:BigDecimal 18:0.70579e3
+    :low: !ruby/object:BigDecimal 18:0.67718e3
+    :close: !ruby/object:BigDecimal 18:0.6985e3
+    :volume: 223217
+    :wap: !ruby/object:BigDecimal 18:0.692509e3
+    :trades: 101858
+    :created_at: 2021-04-25 19:01:26.557935890 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-12
+    :open: !ruby/object:BigDecimal 18:0.675e3
+    :high: !ruby/object:BigDecimal 18:0.696e3
+    :low: !ruby/object:BigDecimal 18:0.66613e3
+    :close: !ruby/object:BigDecimal 18:0.69299e3
+    :volume: 203186
+    :wap: !ruby/object:BigDecimal 18:0.683377e3
+    :trades: 94340
+    :created_at: 2021-04-25 19:01:26.558102298 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-15
+    :open: !ruby/object:BigDecimal 18:0.6899e3
+    :high: !ruby/object:BigDecimal 18:0.71318e3
+    :low: !ruby/object:BigDecimal 18:0.68404e3
+    :close: !ruby/object:BigDecimal 18:0.702e3
+    :volume: 184599
+    :wap: !ruby/object:BigDecimal 18:0.702253e3
+    :trades: 82534
+    :created_at: 2021-04-25 19:01:26.558248039 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-16
+    :open: !ruby/object:BigDecimal 18:0.71077e3
+    :high: !ruby/object:BigDecimal 18:0.711e3
+    :low: !ruby/object:BigDecimal 18:0.671e3
+    :close: !ruby/object:BigDecimal 18:0.6741e3
+    :volume: 196885
+    :wap: !ruby/object:BigDecimal 18:0.691238e3
+    :trades: 91175
+    :created_at: 2021-04-25 19:01:26.558392890 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-17
+    :open: !ruby/object:BigDecimal 18:0.6746e3
+    :high: !ruby/object:BigDecimal 18:0.70373e3
+    :low: !ruby/object:BigDecimal 18:0.65001e3
+    :close: !ruby/object:BigDecimal 18:0.69974e3
+    :volume: 257008
+    :wap: !ruby/object:BigDecimal 18:0.679609e3
+    :trades: 118203
+    :created_at: 2021-04-25 19:01:26.558537654 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-18
+    :open: !ruby/object:BigDecimal 18:0.68777e3
+    :high: !ruby/object:BigDecimal 18:0.69279e3
+    :low: !ruby/object:BigDecimal 18:0.6505e3
+    :close: !ruby/object:BigDecimal 18:0.65056e3
+    :volume: 199139
+    :wap: !ruby/object:BigDecimal 18:0.672028e3
+    :trades: 93940
+    :created_at: 2021-04-25 19:01:26.558681676 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-19
+    :open: !ruby/object:BigDecimal 18:0.65e3
+    :high: !ruby/object:BigDecimal 18:0.6685e3
+    :low: !ruby/object:BigDecimal 18:0.62462e3
+    :close: !ruby/object:BigDecimal 18:0.6522e3
+    :volume: 272484
+    :wap: !ruby/object:BigDecimal 18:0.646023e3
+    :trades: 117063
+    :created_at: 2021-04-25 19:01:26.558827787 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-22
+    :open: !ruby/object:BigDecimal 18:0.662e3
+    :high: !ruby/object:BigDecimal 18:0.69962e3
+    :low: !ruby/object:BigDecimal 18:0.65487e3
+    :close: !ruby/object:BigDecimal 18:0.66935e3
+    :volume: 251751
+    :wap: !ruby/object:BigDecimal 18:0.685987e3
+    :trades: 109907
+    :created_at: 2021-04-25 19:01:26.558972443 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-23
+    :open: !ruby/object:BigDecimal 18:0.669e3
+    :high: !ruby/object:BigDecimal 18:0.6816e3
+    :low: !ruby/object:BigDecimal 18:0.65751e3
+    :close: !ruby/object:BigDecimal 18:0.663e3
+    :volume: 179080
+    :wap: !ruby/object:BigDecimal 18:0.668306e3
+    :trades: 82686
+    :created_at: 2021-04-25 19:01:26.559117074 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-24
+    :open: !ruby/object:BigDecimal 18:0.664e3
+    :high: !ruby/object:BigDecimal 18:0.676e3
+    :low: !ruby/object:BigDecimal 18:0.63e3
+    :close: !ruby/object:BigDecimal 18:0.6339e3
+    :volume: 212956
+    :wap: !ruby/object:BigDecimal 18:0.650616e3
+    :trades: 89230
+    :created_at: 2021-04-25 19:01:26.559261204 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-25
+    :open: !ruby/object:BigDecimal 18:0.6341e3
+    :high: !ruby/object:BigDecimal 18:0.6455e3
+    :low: !ruby/object:BigDecimal 18:0.60444e3
+    :close: !ruby/object:BigDecimal 18:0.6426e3
+    :volume: 252144
+    :wap: !ruby/object:BigDecimal 18:0.629934e3
+    :trades: 114415
+    :created_at: 2021-04-25 19:01:26.559408498 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-26
+    :open: !ruby/object:BigDecimal 18:0.64205e3
+    :high: !ruby/object:BigDecimal 18:0.65123e3
+    :low: !ruby/object:BigDecimal 18:0.6e3
+    :close: !ruby/object:BigDecimal 18:0.6213e3
+    :volume: 198434
+    :wap: !ruby/object:BigDecimal 18:0.6191e3
+    :trades: 97725
+    :created_at: 2021-04-25 19:01:26.559554627 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-29
+    :open: !ruby/object:BigDecimal 18:0.60945e3
+    :high: !ruby/object:BigDecimal 18:0.62208e3
+    :low: !ruby/object:BigDecimal 18:0.59602e3
+    :close: !ruby/object:BigDecimal 18:0.6078e3
+    :volume: 161127
+    :wap: !ruby/object:BigDecimal 18:0.607063e3
+    :trades: 83597
+    :created_at: 2021-04-25 19:01:26.559700586 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-30
+    :open: !ruby/object:BigDecimal 18:0.606e3
+    :high: !ruby/object:BigDecimal 18:0.64e3
+    :low: !ruby/object:BigDecimal 18:0.59101e3
+    :close: !ruby/object:BigDecimal 18:0.63901e3
+    :volume: 258480
+    :wap: !ruby/object:BigDecimal 18:0.617754e3
+    :trades: 112444
+    :created_at: 2021-04-25 19:01:26.559851414 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-03-31
+    :open: !ruby/object:BigDecimal 18:0.6347e3
+    :high: !ruby/object:BigDecimal 18:0.672e3
+    :low: !ruby/object:BigDecimal 18:0.6275e3
+    :close: !ruby/object:BigDecimal 18:0.66331e3
+    :volume: 216567
+    :wap: !ruby/object:BigDecimal 18:0.659397e3
+    :trades: 97394
+    :created_at: 2021-04-25 19:01:26.560047999 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-01
+    :open: !ruby/object:BigDecimal 18:0.67555e3
+    :high: !ruby/object:BigDecimal 18:0.69243e3
+    :low: !ruby/object:BigDecimal 18:0.658e3
+    :close: !ruby/object:BigDecimal 18:0.658e3
+    :volume: 227404
+    :wap: !ruby/object:BigDecimal 18:0.675761e3
+    :trades: 108414
+    :created_at: 2021-04-25 19:01:26.560151565 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-05
+    :open: !ruby/object:BigDecimal 18:0.7e3
+    :high: !ruby/object:BigDecimal 18:0.7167e3
+    :low: !ruby/object:BigDecimal 18:0.6847e3
+    :close: !ruby/object:BigDecimal 18:0.6927e3
+    :volume: 274246
+    :wap: !ruby/object:BigDecimal 18:0.697175e3
+    :trades: 118679
+    :created_at: 2021-04-25 19:01:26.560255068 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-06
+    :open: !ruby/object:BigDecimal 18:0.6905e3
+    :high: !ruby/object:BigDecimal 18:0.69655e3
+    :low: !ruby/object:BigDecimal 18:0.68137e3
+    :close: !ruby/object:BigDecimal 18:0.6925e3
+    :volume: 192004
+    :wap: !ruby/object:BigDecimal 18:0.690385e3
+    :trades: 80146
+    :created_at: 2021-04-25 19:01:26.560358215 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-07
+    :open: !ruby/object:BigDecimal 18:0.69287e3
+    :high: !ruby/object:BigDecimal 18:0.69335e3
+    :low: !ruby/object:BigDecimal 18:0.66784e3
+    :close: !ruby/object:BigDecimal 18:0.6724e3
+    :volume: 176816
+    :wap: !ruby/object:BigDecimal 18:0.680396e3
+    :trades: 78965
+    :created_at: 2021-04-25 19:01:26.560471767 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-08
+    :open: !ruby/object:BigDecimal 18:0.67899e3
+    :high: !ruby/object:BigDecimal 18:0.68955e3
+    :low: !ruby/object:BigDecimal 18:0.67164e3
+    :close: !ruby/object:BigDecimal 18:0.68677e3
+    :volume: 161112
+    :wap: !ruby/object:BigDecimal 18:0.6827e3
+    :trades: 71400
+    :created_at: 2021-04-25 19:01:26.560618832 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-09
+    :open: !ruby/object:BigDecimal 18:0.68473e3
+    :high: !ruby/object:BigDecimal 18:0.6875e3
+    :low: !ruby/object:BigDecimal 18:0.66943e3
+    :close: !ruby/object:BigDecimal 18:0.677e3
+    :volume: 132023
+    :wap: !ruby/object:BigDecimal 18:0.675354e3
+    :trades: 65063
+    :created_at: 2021-04-25 19:01:26.560764066 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-12
+    :open: !ruby/object:BigDecimal 18:0.6857e3
+    :high: !ruby/object:BigDecimal 18:0.7048e3
+    :low: !ruby/object:BigDecimal 18:0.67871e3
+    :close: !ruby/object:BigDecimal 18:0.70151e3
+    :volume: 180941
+    :wap: !ruby/object:BigDecimal 18:0.698134e3
+    :trades: 82594
+    :created_at: 2021-04-25 19:01:26.560909265 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-13
+    :open: !ruby/object:BigDecimal 18:0.704e3
+    :high: !ruby/object:BigDecimal 18:0.7635e3
+    :low: !ruby/object:BigDecimal 18:0.70373e3
+    :close: !ruby/object:BigDecimal 18:0.7577e3
+    :volume: 289868
+    :wap: !ruby/object:BigDecimal 18:0.742387e3
+    :trades: 130928
+    :created_at: 2021-04-25 19:01:26.561053254 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-14
+    :open: !ruby/object:BigDecimal 18:0.76472e3
+    :high: !ruby/object:BigDecimal 18:0.78669e3
+    :low: !ruby/object:BigDecimal 18:0.72803e3
+    :close: !ruby/object:BigDecimal 18:0.73288e3
+    :volume: 310457
+    :wap: !ruby/object:BigDecimal 18:0.754939e3
+    :trades: 146614
+    :created_at: 2021-04-25 19:01:26.561197805 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-15
+    :open: !ruby/object:BigDecimal 18:0.745e3
+    :high: !ruby/object:BigDecimal 18:0.74734e3
+    :low: !ruby/object:BigDecimal 18:0.72131e3
+    :close: !ruby/object:BigDecimal 18:0.73825e3
+    :volume: 178481
+    :wap: !ruby/object:BigDecimal 18:0.732669e3
+    :trades: 81560
+    :created_at: 2021-04-25 19:01:26.561342563 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-16
+    :open: !ruby/object:BigDecimal 18:0.73763e3
+    :high: !ruby/object:BigDecimal 18:0.74941e3
+    :low: !ruby/object:BigDecimal 18:0.7246e3
+    :close: !ruby/object:BigDecimal 18:0.73925e3
+    :volume: 176788
+    :wap: !ruby/object:BigDecimal 18:0.736756e3
+    :trades: 82419
+    :created_at: 2021-04-25 19:01:26.561486960 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-19
+    :open: !ruby/object:BigDecimal 18:0.734e3
+    :high: !ruby/object:BigDecimal 18:0.74163e3
+    :low: !ruby/object:BigDecimal 18:0.6918e3
+    :close: !ruby/object:BigDecimal 18:0.7216e3
+    :volume: 253729
+    :wap: !ruby/object:BigDecimal 18:0.708645e3
+    :trades: 119653
+    :created_at: 2021-04-25 19:01:26.561631750 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-20
+    :open: !ruby/object:BigDecimal 18:0.72021e3
+    :high: !ruby/object:BigDecimal 18:0.73725e3
+    :low: !ruby/object:BigDecimal 18:0.7017e3
+    :close: !ruby/object:BigDecimal 18:0.71239e3
+    :volume: 236046
+    :wap: !ruby/object:BigDecimal 18:0.722186e3
+    :trades: 103296
+    :created_at: 2021-04-25 19:01:26.561776219 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-21
+    :open: !ruby/object:BigDecimal 18:0.71162e3
+    :high: !ruby/object:BigDecimal 18:0.74484e3
+    :low: !ruby/object:BigDecimal 18:0.698e3
+    :close: !ruby/object:BigDecimal 18:0.7406e3
+    :volume: 194747
+    :wap: !ruby/object:BigDecimal 18:0.724135e3
+    :trades: 92507
+    :created_at: 2021-04-25 19:01:26.561920726 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-22
+    :open: !ruby/object:BigDecimal 18:0.74172e3
+    :high: !ruby/object:BigDecimal 18:0.75377e3
+    :low: !ruby/object:BigDecimal 18:0.713e3
+    :close: !ruby/object:BigDecimal 18:0.7185e3
+    :volume: 228577
+    :wap: !ruby/object:BigDecimal 18:0.734874e3
+    :trades: 106818
+    :created_at: 2021-04-25 19:01:26.562086002 +00:00
+- !ruby/object:IB::Bar
+  attributes:
+    :time: 2021-04-23
+    :open: !ruby/object:BigDecimal 18:0.71712e3
+    :high: !ruby/object:BigDecimal 18:0.73736e3
+    :low: !ruby/object:BigDecimal 18:0.71253e3
+    :close: !ruby/object:BigDecimal 18:0.7301e3
+    :volume: 185388
+    :wap: !ruby/object:BigDecimal 18:0.728894e3
+    :trades: 79653
+    :created_at: 2021-04-25 19:01:26.562226765 +00:00

@@ -4,11 +4,13 @@ module TechnicalAnalysis
     SMA = Struct.new :time, :value
     EMA = Struct.new :time, :value
     WMA = Struct.new :time, :value
+    KAMA = Struct.new :time, :value
 
 
     # Calculates the exponential moving average (EMA) for the data over the given period
     # https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
     #
+    # Takes a block which replaces the _smooth-constant_
     #
     # z = Symbols::Futures.mini_dax.eod( duration: '30 d').each
     # e= nil
@@ -24,12 +26,15 @@ module TechnicalAnalysis
     # end           
     # 
 
-    def self.ema current_value, data, period, prev_ema
-      if prev_ema.nil?
-        data.sum / data.size.to_f # Average
-      else
-        (current_value - prev_ema) * (2.0 / (period + 1.0)) + prev_ema
-      end
+    def self.ema current_value, default_value, period,  prev_ema 
+      raise "Period must be greater then one" if  period <= 1
+      smooth_constant = if block_given? 
+                          yield period
+                        else
+                          (2.0 / (period + 1.0))
+                        end
+
+    prev_ema.nil? ?  default_value.to_f : (current_value - prev_ema) * smooth_constant + prev_ema
     end
 
     # Calculates the weighted moving average
@@ -64,6 +69,33 @@ module TechnicalAnalysis
       sma_source.sum / sma_source.size .to_f  
 
     end
+
+
+    def self.kama current_value=nil, kama_source=[], period=30, fast=2, slow= 30, prev_kama
+			
+      # build the SmootingFactor (alpha)
+      # fastest = 2 / GDperiod(fast) +1 ;  slowest = 2 / GDperiod(slow) +1 
+
+      smoothConst_fast=2  / (fast +1).to_f
+      smoothConst_slow=2  / (slow +1).to_f
+      kama_source << current_value   if current_value.present?
+      if data.size < 2 || prev_kama.nil?
+        data.first			# returnValue
+      else
+          kama_source = kama_source[ -period , period ] if kama_source.size > period
+
+          period = kama_source.size
+          # define the Effiency Ratio to be used by the "kaufmans Adaptive Moving Average" :  kama 
+          #				| x(t) - x(t-n) |
+          # er = ----------------------------
+          #			 sum | x(i) - x(i-1) |
+          er=	(kama_source.first - kama_source(period)).abs  /  
+            (1..period).map{|x| (kama_source[x] - kama_source[x-1]).abs }.sum  rescue 1
+
+          alpha = (er  * ( smoothConst_fast - smoothConst_slow ) + smoothConst_slow ) ** 2
+
+          alpha  + prev_kama * (kama_source[-1] -prev_kama)        
+      end
+    end
   end
 end
-

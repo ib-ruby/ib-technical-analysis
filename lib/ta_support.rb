@@ -25,7 +25,7 @@ module  TASupport
     #  => #<struct TechnicalAnalysis::MovingAverage::EMA time=Wed, 10 Mar 2021, value=0.149441e5
     def calculate indicator= :ema,  **params
       struct = TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase
-      buffer, start = nil, []
+      buffer, start, default_value = nil, [], nil
       choice = if block_given? 
                  yield  
                elsif peek.respond_to?(:time)
@@ -33,32 +33,73 @@ module  TASupport
                else
                  nil
                end
-      data = choice.nil? ? self.to_a : map {|y| y.send choice }
       period = params[:period] || 30
-      calc_ema = ->(item) { buffer = TechnicalAnalysis::MovingAverage.ema item, data, period, buffer }
-      calc_sma = ->(data_items) { TechnicalAnalysis::MovingAverage.sma nil, data_items, period }
-      if peek.respond_to? :time 
-        map{ | d |
-          value = case indicator
-                  when :sma
-                    calc_sma[ start.push( d.send( choice)) ]
-                  when :ema
-                    calc_ema[ d.send choice ]
-                  when :wma
-                    TechnicalAnalysis::MovingAverage.wma( nil, start.push( d.send( choice )), period )
+      fast = params[:fast] || 2
+      slow= params[:slow] || 30
+
+      calc_default_value = ->( warmup ){  ( choice.nil? ? take(warmup) : take(warmup).map{ |x| x.send choice }).sum / warmup }
+      calc_ema = ->(item) do
+        # calculate the start-value only if necessary
+        buffer = TechnicalAnalysis::MovingAverage.ema item, default_value, period, buffer 
+      end
+      calc_kama = ->(item) { start << item;  buffer = TechnicalAnalysis::MovingAverage.kama item, start, period, fast, slow, buffer }
+      #
+      ## take a look to the first dataset ot the time series.
+      ## and determine the date-field for the input-data
+      a = peek
+      date_field = if a.respond_to? :time
+                     :time
+                   elsif a.respond_to? :date_time
+                     :date_time
+                   elsif a.respond_to? :date
+                     :date
+                   else
+                     nil
+                   end
+
+      ## iterate across the enumerator and return the result of the calculations
+      map.with_index { | d, i |
+        raw_data = if date_field.present? || choice.present?
+                     d.send(choice)
+                   else
+                     d
+                   end
+        value = case indicator
+                when :sma
+                  if i+1 < period    # warmup period
+                    default_value ||= calc_default_value[period]
+                    start.push raw_data
+                    next  #  just produce a nil element
+                  else
+                    TechnicalAnalysis::MovingAverage.sma nil, start.push( raw_data ), period
                   end
-          struct.new d.time , value
-        }#map
-      else
-        case indicator
-        when :sma
-          map{ | d | start.push( choice.nil? ? d : d.send( choice )) ; calc_sma[ start ] }
-        when :ema
-          map{ | d | calc_ema[ choice.nil? ? d : d.send( choice ) ] }
-        when :wma
-          map{ |d| TechnicalAnalysis::MovingAverage.wma(nil,  start.push( choice.nil? ? d : d.send( choice ) ), period ) }
-        end # case
-      end   # branch    
+                when :ema
+                  if i+1 < period 
+                    default_value ||= calc_default_value[period]
+                    next  #  just produce a nil object
+                  else 
+                  calc_ema[ raw_data ]
+                  end
+                when :kama
+                  calc_ema[ raw_data ]
+                when :wma
+                  TechnicalAnalysis::MovingAverage.wma nil, start.push( raw_data ), period
+                end
+        ## data-format of the returned array-elements
+        if date_field.present?
+          struct.new d.send(date_field), value
+        else
+          value
+        end
+      }.compact     # map
     end     # def
   end       # refine
 end         # module
+
+##  notes on Enumerators
+#-  z:= An Enumerator
+#-  z.size == z.count
+#-  z.entries == z.to_a
+#-  z.take n   returns an array of the first n elements
+#-  z.sum, if enumerator-objects define a "+" method
+#
