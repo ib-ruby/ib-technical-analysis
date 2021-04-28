@@ -84,3 +84,8 @@ end
 def read_sample_data
   YAML.load_file( File.expand_path('../samples/stock-2m.yml',__FILE__ ))
 end
+
+def read_stock_data
+  YAML.load_file( File.expand_path('../samples/dax-sample.yml',__FILE__ ))
+
+end

@@ -26,22 +26,20 @@ RSpec.describe TechnicalAnalysis::MovingAverage::EMA do
   context "perform test calculations from synthetic data" do
     let( :sample_data ){ (1 ..20).each }
 
-#    it "indicator returns original data if period is one" do
-#      output= sample_data.calculate(:ema, period: 1)
-#      expected_output = sample_data.map &:to_f
-#      expect( output ).to eq expected_output
-#    end
+    it "throws an exception  if period is one" do
+      expect{  sample_data.calculate(:ema, period: 1) }.to raise_exception RuntimeError
+    end
 
     it "indicator returns known values if period is three" do
-      output= sample_data.calculate(:ema, period: 3)
+      output = sample_data.calculate(:ema, period: 3)
       expected_output = sample_data.drop(1).map( &:to_f)
       expect( output ).to eq expected_output[0..-2]
     end
 
     it "indicator is equal to sma if period is three" do
-      ema_output= sample_data.calculate(:ema, period: 3)
-      sma_output= sample_data.calculate(:sma, period: 3)
-    expect( ema_output ).to eq sma_output
+      ema_output = sample_data.calculate(:ema, period: 3)
+      sma_output = sample_data.calculate(:sma, period: 3)
+      expect( ema_output ).to eq sma_output
     end
   end
 end

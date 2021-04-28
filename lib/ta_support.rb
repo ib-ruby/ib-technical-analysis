@@ -23,6 +23,8 @@ module  TASupport
     # zz= z.calculate( :ema, period: 3 ) { :close } 
     # zz.first
     #  => #<struct TechnicalAnalysis::MovingAverage::EMA time=Wed, 10 Mar 2021, value=0.149441e5
+    #
+    #  Input-data are converted to float and then applied to the indicator-calculations
     def calculate indicator= :ema,  **params
       struct = TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase
       buffer, start, default_value = nil, [], nil
@@ -37,12 +39,29 @@ module  TASupport
       fast = params[:fast] || 2
       slow= params[:slow] || 30
 
-      calc_default_value = ->( warmup ){  ( choice.nil? ? take(warmup) : take(warmup).map{ |x| x.send choice }).sum / warmup }
+      calc_default_value = ->( wp ){  ( choice.nil? ? take(wp) : take(wp).map{ |x| x.send( choice ) }).sum / wp }
+
+      # warmup initializes default_value ( average of values ) and start( array of values )
+      warmup = -> ( index, data ) do
+                  if index < period    # warmup period
+                    default_value ||= calc_default_value[ period ]
+                    start.push data
+                   true 
+                  else  #  just produce a nil element
+                   false
+                  end
+      end
+
       calc_ema = ->(item) do
         # calculate the start-value only if necessary
         buffer = TechnicalAnalysis::MovingAverage.ema item, default_value, period, buffer 
       end
-      calc_kama = ->(item) { start << item;  buffer = TechnicalAnalysis::MovingAverage.kama item, start, period, fast, slow, buffer }
+      # start (array of processed values) is updated in every iteration
+      # applies to indicators 
+      # kama
+      # sma
+      # wma
+      calc_kama = ->(item) { buffer = TechnicalAnalysis::MovingAverage.kama item, start, period, fast, slow, buffer }
       #
       ## take a look to the first dataset ot the time series.
       ## and determine the date-field for the input-data
@@ -59,32 +78,24 @@ module  TASupport
 
       ## iterate across the enumerator and return the result of the calculations
       map.with_index { | d, i |
+        # central point to convert to float
         raw_data = if date_field.present? || choice.present?
-                     d.send(choice)
+                     d.send(choice).to_f
                    else
-                     d
+                     d.to_f
                    end
         value = case indicator
                 when :sma
-                  if i+1 < period    # warmup period
-                    default_value ||= calc_default_value[period]
-                    start.push raw_data
-                    next  #  just produce a nil element
-                  else
-                    TechnicalAnalysis::MovingAverage.sma nil, start.push( raw_data ), period
-                  end
+                  warmup[i+1, raw_data] ? next : TechnicalAnalysis::MovingAverage.sma( raw_data, start, period )
                 when :ema
-                  if i+1 < period 
-                    default_value ||= calc_default_value[period]
-                    next  #  just produce a nil object
-                  else 
-                  calc_ema[ raw_data ]
-                  end
+                  warmup[i+1, raw_data] ? next : calc_ema[ raw_data ]
                 when :kama
-                  calc_ema[ raw_data ]
+                  warmup[i+1, raw_data] ? next : calc_kama[ raw_data ]
                 when :wma
-                  TechnicalAnalysis::MovingAverage.wma nil, start.push( raw_data ), period
+                  start.shift if start.size >= period
+                  warmup[i+1, raw_data] ? next :  TechnicalAnalysis::MovingAverage.wma( raw_data , start, period)
                 end
+        #puts start.inspect
         ## data-format of the returned array-elements
         if date_field.present?
           struct.new d.send(date_field), value
