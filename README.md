@@ -36,9 +36,8 @@ The calculated indicator is returned for further processing.
 
 
 `IB-Technical-Analysis` calculations are embedded in the `Enumerator`-class.
-The List is simply iterated, the iteration method defines the indicator. 
 
-The algorithms to calculate a single entry are exposed to streaming datasources. 
+The List is simply iterated. 
 
 Thus
 ```ruby
