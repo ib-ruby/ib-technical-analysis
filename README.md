@@ -1,7 +1,7 @@
 # IB-Technical-Analysis
 A library for performing technical analysis
 
-This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis). However, `IB-Technical-Anaysis` focusses on 
+This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis). However, `IB-Technical-Analysis` focusses on 
 calculation of indicators from a stream of data. 
 
 It fits perfectly into the **_IB-Ruby_** suite, but can be used isolated, too.
