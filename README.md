@@ -1,4 +1,4 @@
-# ib-technical-analysis
+# IB-Technical-Analysis
 A library for performing technical analysis
 
 This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis). However, `IB-Technical-Anaysis` focusses on 
