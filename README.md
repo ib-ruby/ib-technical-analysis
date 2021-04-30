@@ -1,9 +1,36 @@
 # ib-technical-analysis
 A library for performing technical analysis
 
-This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis).
+This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis). However, `IB-Technical-Anaysis` focusses on 
+calculation of indicators from a stream of data. 
 
 It fits perfectly into the **_IB-Ruby_** suite, but can be used isolated, too.
+
+### Indicator classes
+
+Indicators live in the `TechnicalAnalysis` namespace:
+```ruby
+TechnicalAnalysis::MovingAverage::SimpleMA
+TechnicalAnalysis::MovingAverage::EspMA
+TechnicalAnalysis::MovingAverage::Wma
+TechnicalAnalysis::MovingAverage::KaMA
+TechnicalAnalysis::Momentum::Tsi
+```
+##### Common Interface
+The indicators are initialized by
+```ruby
+  indicator = TechnicalAnalysis::MovingAverage::KaMA.new period: 30, fast: 5, slow: 15, data: {an Array}
+```
+
+If an Array is passed, the indicator is calculated immediately.
+
+Subsequent data elements are passed by `indicator.add_item {value}`. 
+The calculated indicator is returned for further processing. 
+
+
+
+
+
 
 ### Perform calculation on time-series
 
