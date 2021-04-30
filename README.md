@@ -55,6 +55,15 @@ zz = z.calculate( :ema, period: 15 ) { :close }
 ```ruby
 zz = z.calculate( :wma, period: 15 ) { :close }
 ```
+* Kaufman Moving Average
+```ruby
+zz = z.calculate( :kama, period: 15, fast: 10, slow: 3 ) { :close }
+```
+* True Strength Index
+```ruby
+zz = z.calculate( :tsi, high: 15, low: 7 ) { :close }
+```
+
 
 
 
