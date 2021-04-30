@@ -1,41 +1,9 @@
 module TechnicalAnalysis
 
   module MovingAverage 
-    SMA = Struct.new :time, :value
-    EMA = Struct.new :time, :value
     WMA = Struct.new :time, :value
-    KAMA = Struct.new :time, :value
 
 
-    # Calculates the exponential moving average (EMA) for the data over the given period
-    # https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average
-    #
-    # Takes a block which replaces the _smooth-constant_
-    #
-    # z = Symbols::Futures.mini_dax.eod( duration: '30 d').each
-    # e= nil
-    # ema= z.map{|y| e= TechnicalAnalysis::MovingAverage.ema( y.close, z.map(&:close), 30, e ) }
-    # 
-    # or
-    #
-    # EMA =  Struct.new :time, :ema
-    # e = nil
-    # ema = z.map do |y|
-    #    EMA.new y.time, 
-    #            e = TechnicalAnalysis::MovingAverage.ema y.close, z.map(&:close), 30, e
-    # end           
-    # 
-
-    def self.ema current_value, default_value, period,  prev_ema 
-      raise "Period must be greater then one" if  period <= 1
-      smooth_constant = if block_given? 
-                          yield period
-                        else
-                          (2.0 / (period + 1.0))
-                        end
-
-    prev_ema.nil? ?  default_value.to_f : (current_value - prev_ema) * smooth_constant + prev_ema
-    end
 
     # Calculates the weighted moving average
     #
