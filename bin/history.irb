@@ -1,0 +1,30 @@
+exit
+exit
+exit
+z = Symbols::Futures.mini_dax.eod( duration: '50 d')
+z.first.pivot
+p.first
+z.first
+z.first.true_range
+z.first.typical_price
+p= z.first
+p.high
+p.low
+p.close
+exit
+z = Symbols::Futures.mini_dax.eod( duration: '50 d')
+z.first.pivot
+exit
+z = Symbols::Futures.mini_dax.eod( duration: '50 d')
+z.first.pivot
+exit
+z = Symbols::Futures.mini_dax.eod( duration: '50 d')
+z.first.pivot
+exit
+z = Symbols::Futures.mini_dax.eod( duration: '50 d')
+z.first.pivot
+z.first.pivot.values
+z.first.pivot.values.class
+z.first.pivot.values.map  &:class
+exiot
+exit

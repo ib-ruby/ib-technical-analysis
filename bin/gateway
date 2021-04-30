@@ -41,6 +41,11 @@ read_yml = -> (key) do
 		YAML::load_file( File.expand_path('../console.yml',__FILE__))[key]
 	end
 
+# History-file für IRB-Sitzung setzen
+pwd = `pwd`[0..-2]
+`sed -i '/HISTORY_FILE]/ c\
+IRB.conf[:HISTORY_FILE] = "#{pwd}/history.irb"\
+  ' ~/.irbrc`
 
 
   puts 

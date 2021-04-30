@@ -16,6 +16,13 @@ TechnicalAnalysis::MovingAverage::Wma
 TechnicalAnalysis::MovingAverage::KaMA
 TechnicalAnalysis::Momentum::Tsi
 ```
+
+Additional calculations on single Bars are defined as extension of `IB::Bar`:
+ 
+* typical_price
+* pivot
+* true_range
+
 ##### Common Interface
 The indicators are initialized by
 ```ruby
