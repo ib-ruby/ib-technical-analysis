@@ -3,7 +3,7 @@ A library for performing technical analysis
 
 This Gem is inspired by the [intrinio package](https://github.com/intrinio/technical-analysis).
 
-It fits perfect into the **_IB-Ruby_** suite, but can be used isolated, too.
+It fits perfectly into the **_IB-Ruby_** suite, but can be used isolated, too.
 
 ### Perform calculation on time-series
 
