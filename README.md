@@ -15,6 +15,7 @@ TechnicalAnalysis::MovingAverage::EspMA
 TechnicalAnalysis::MovingAverage::Wma
 TechnicalAnalysis::MovingAverage::KaMA
 TechnicalAnalysis::Momentum::Tsi
+TechnicalAnalysis::Momentum::Lane
 ```
 
 Additional calculations on single Bars are defined as extension of `IB::Bar`:
@@ -95,6 +96,10 @@ zz = z.calculate( :kama, period: 15, fast: 10, slow: 3 ) { :close }
 * True Strength Index
 ```ruby
 zz = z.calculate( :tsi, high: 15, low: 7 ) { :close }
+```
+* Lane Stochastic  
+```ruby
+zz = z.calculate( :lane, period: 10, fast: 3, slow: 3 ) { :wap }
 ```
 
 

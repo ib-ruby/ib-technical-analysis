@@ -28,7 +28,7 @@ module  TASupport
     def calculate indicator= :ema,  **params
       struct = if indicator.to_s[-2,2]=='ma'
                  TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase 
-               elsif indicator.to_s[-2,2]=='si'
+               elsif indicator.to_s[-2,2]=='si' || indicator== :lane
                  TechnicalAnalysis::Momentum.send :const_get, indicator.to_s.upcase 
                end
       buffer, start, default_value = nil, [], nil
@@ -54,6 +54,11 @@ module  TASupport
       when :tsi
         high = params[:high] || 25
         low = params[:low] || 13
+      when :lane
+        period = params[:period] || 10
+        fast = params[:fast] || 3
+        slow= params[:slow] || 3
+
       end 
 
       # start (array of processed values) is updated in every iteration
@@ -83,18 +88,25 @@ module  TASupport
                             TechnicalAnalysis::MovingAverage::KaMA.new period: period, strict: strict_mode,
                                fast: fast, slow: slow
                           when :tsi
-                            TechnicalAnalysis::Momentum::Tsi.new  low: low, high: high, strict: strict_mode
-
+                            TechnicalAnalysis::Momentum::Tsi.new  low: low, high: high
+                          when :lane
+                            TechnicalAnalysis::Momentum::Lane.new  slow: slow, fast: fast, period: period,
+                              take: choice
                           end
       ## iterate across the enumerator and return the result of the calculations
       map.with_index { | d, i |
         # central point to convert to float
-        raw_data = if date_field.present? || choice.present?
+        unless indicator == :lane
+          raw_data = if date_field.present? || choice.present?
                      d.send(choice).to_f
                    else
                      d.to_f
                    end
-        indicator_method.add_item(raw_data)
+          indicator_method.add_item(raw_data)
+        else
+          indicator_method.add_item(d)
+        end
+
         next if indicator_method.current.nil? # creates a nil entry 
         value = indicator_method.current      # return this value
         ## data-format of the returned array-elements
