@@ -87,6 +87,8 @@ module  TASupport
                           when :kama
                             TechnicalAnalysis::MovingAverage::KaMA.new period: period, strict: strict_mode,
                                fast: fast, slow: slow
+                          when :rsi
+                            TechnicalAnalysis::Momentum::Rsi.new  period: period 
                           when :tsi
                             TechnicalAnalysis::Momentum::Tsi.new  low: low, high: high
                           when :lane

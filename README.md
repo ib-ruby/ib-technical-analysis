@@ -14,6 +14,7 @@ TechnicalAnalysis::MovingAverage::SimpleMA
 TechnicalAnalysis::MovingAverage::EspMA
 TechnicalAnalysis::MovingAverage::Wma
 TechnicalAnalysis::MovingAverage::KaMA
+TechnicalAnalysis::Momentum::Rsi
 TechnicalAnalysis::Momentum::Tsi
 TechnicalAnalysis::Momentum::Lane
 ```
@@ -92,6 +93,10 @@ zz = z.calculate( :wma, period: 15 ) { :close }
 * Kaufman Moving Average
 ```ruby
 zz = z.calculate( :kama, period: 15, fast: 10, slow: 3 ) { :close }
+```
+* Relative Strength Index
+```ruby
+zz = z.calculate( :rsi, period: 15 ) { :close }
 ```
 * True Strength Index
 ```ruby
