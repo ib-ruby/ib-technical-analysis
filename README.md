@@ -103,31 +103,31 @@ end
 
 * Simple Moving Average                   
 ```ruby
-zz = z.calculate( :sma, period: 15 ) { :close }
+zz = z.calculate :sma, period: 15, use: :close 
 ```
 * Exponential Moving Average
 ```ruby
-zz = z.calculate( :ema, period: 15 ) { :close }
+zz = z.calculate :ema, period: 15  
 ```
 * Weighted Moving Average
 ```ruby
-zz = z.calculate( :wma, period: 15 ) { :close }
+zz = z.calculate :wma, period: 15 
 ```
 * Kaufman Moving Average
 ```ruby
-zz = z.calculate( :kama, period: 15, fast: 10, slow: 3 ) { :close }
+zz = z.calculate :kama, period: 15, fast: 10, slow: 3 
 ```
 * Relative Strength Index
 ```ruby
-zz = z.calculate( :rsi, period: 15 ) { :close }
+zz = z.calculate :rsi, period: 15 
 ```
 * True Strength Index
 ```ruby
-zz = z.calculate( :tsi, high: 15, low: 7 ) { :close }
+zz = z.calculate :tsi, high: 15, low: 7 
 ```
 * Lane Stochastic  
 ```ruby
-zz = z.calculate( :lane, period: 10, fast: 3, slow: 3 ) { :wap }
+zz = z.calculate :lane, period: 10, fast: 3, slow: 3 , use: :wap 
 ```
 
 
