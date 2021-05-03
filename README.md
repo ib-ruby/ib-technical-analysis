@@ -59,7 +59,7 @@ require 'technical-analysis'
 using TASupport
 
 z = Symbols::Futures.mini_dax.eod( duration: '50 d').each
-zz= z.calculate( :ema, period: 15 ){ :close }
+zz= z.calculate( :ema, period: 15 , use: :close 
 zz.first
 => #<struct TechnicalAnalysis::MovingAverage::EMA time=Wed, 10 Mar 2021, value=0.149524e5> 
 
@@ -73,6 +73,29 @@ u =  z.map( &:close ).each
 uu=  u.calculate( :ema, period: 15 ) 
 uu.first
 => 0.149524e5 
+```
+
+### Signals and Backtesting
+
+The `calculate`-method of Enumerator passes raw-data and calculated indicator-values to an optional block.
+This enables the formulation of signal generators.
+
+```ruby
+buffer=[]
+zz= z.calculate( :ema, period: 5, use: :typical_price ) do | raw, struct | 
+   buffer << struct.value
+   buffer.shift if buffer.size >2
+   momentum_indicator =  (buffer.first - buffer.last) <=> 0
+   crossing = case momentum_indicator
+        when +1
+          buffer.first > raw.close && buffer.last < raw.close
+        when -1
+          buffer.first < raw.close && buffer.last > raw.close
+        end
+   buy_or_sell =  momentum_indicator == 1 ? "buy" : "sell"
+   puts "#{buy_or_sell}-Signal: EMA-Indicator-Crossing @ #{struct.time}" if crossing
+end
+
 ```
 
 
