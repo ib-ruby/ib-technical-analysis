@@ -38,7 +38,12 @@ module TechnicalAnalysis
 
       # adds item, calculates the kama, puts value to the buffer and returns the result
       def add_item  value
+        begin
         @queue << value.to_f
+      rescue NoMethodError => e
+        puts "add item only supports single values. Using the :close method"
+        @queue << value.send(:close) || value
+        end
         if @queue.size < @period
           @buffer = [ @queue.sum / @queue.size ]  # fill buffer with  average
         else

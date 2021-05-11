@@ -1,4 +1,4 @@
-require 'technical_analysis/bar_calculation'
+require 'logging.rb'
 require 'ib/bar.rb'
 require 'technical_analysis/moving-average/base.rb'
 require 'technical_analysis/moving-average/simple-ma.rb'

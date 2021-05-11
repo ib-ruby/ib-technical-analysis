@@ -1,4 +1,4 @@
 
-module TechnicalAnalysis 
-    VERSION = "1.0"
+module TechnicalAnalysis
+  VERSION = "0.2"
 end

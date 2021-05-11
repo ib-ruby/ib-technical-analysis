@@ -26,7 +26,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
 
-	spec.add_dependency "ox"
+  spec.add_dependency "ib-api"
+  spec.add_dependency "ib-extensions"
 	spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency 'rspec-collection_matchers'

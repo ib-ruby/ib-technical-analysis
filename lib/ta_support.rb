@@ -145,18 +145,8 @@ module  TASupport
         yielder.nil? ?  result  : yielder   #  return the expression from the block  if present
       }.compact     # map
     end     # def
-
-=begin
- Iterates through the Enumerator and returns predefined signals
-
- Parameters: what:  a signal, defined as proc
-             indicators: a Hash: { indicator-symbol => { parameter that define the indicator } }
-=end
-    def analyse what, **indicators
-      
-    end
-  end       # refine
-end         # module
+  end
+end
 
 ##  notes on Enumerators
 #-  z:= An Enumerator
