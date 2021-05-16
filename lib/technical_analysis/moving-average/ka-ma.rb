@@ -20,7 +20,7 @@ module TechnicalAnalysis
     # 
 
     class KaMA
-      def initialize period: 10, fast: 2, slow: 30, data: []
+      def initialize period: 10, fast: 2, slow: 30, data: [], **params
 
         raise "Period must be greater then one" if  period <= 1
 
@@ -54,7 +54,7 @@ module TechnicalAnalysis
       end
 
       # returns the kama-buffer
-      def kaema
+      def kama
         @buffer
       end
 

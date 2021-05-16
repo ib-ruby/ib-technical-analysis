@@ -33,21 +33,25 @@ RSpec.describe TechnicalAnalysis::MovingAverage::KAMA do
     # Its thus possible to fine-tune kama by providing just the rigth entries in that array.
     it "use sample_data atomically"  do
       sample_item =  100
-      previous_kama =100 
-      kama =  TechnicalAnalysis::MovingAverage.kama sample_item, sample_data.take(period),  period, fast, slow, previous_kama
+      kama =  TechnicalAnalysis::MovingAverage::KaMA.new period: period,
+                                                         data: sample_data.take(sample_item -1),
+                                                         fast: fast,
+                                                         slow: slow
 
-      expect(kama).to eq 100
+      expect(kama.current.round).to eq 96
+      expect{ kama.add_item sample_data.to_a[sample_item] }.to change{ kama.current }.by 1.250000000001421
+
     end
 
 
 
-    it "indicator behaves like ema " do
-      ema_output = sample_data.calculate(:ema, period: 10)
-      kama_output = sample_data.calculate(:kama, period: 10)
-      puts 
-      puts kama_output
+#    it "indicator behaves like ema " do
+#      ema_output = sample_data.calculate(:ema, period: 10)
+#      kama_output = sample_data.calculate(:kama, period: 10)
+#      puts 
+#      puts kama_output
 #      ema_output.each.with_index{|e,i| next if i <5; expect( (e - kama_output[i]).abs).to be > 3.25 }
- #     ema_output.each.with_index{|e,i| next if i <5; expect( (e - kama_output[i]).abs).to be < 3.33 }
-    end
+#     ema_output.each.with_index{|e,i| next if i <5; expect( (e - kama_output[i]).abs).to be < 3.33 }
+#    end
   end
 end
