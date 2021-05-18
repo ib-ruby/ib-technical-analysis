@@ -11,12 +11,13 @@ It fits perfectly into the **_IB-Ruby_** suite, but can be used isolated, too.
 Indicators live in the `TechnicalAnalysis` namespace:
 ```ruby
 TechnicalAnalysis::MovingAverage::SimpleMA
-TechnicalAnalysis::MovingAverage::EspMA
+TechnicalAnalysis::MovingAverage::ExpMA
 TechnicalAnalysis::MovingAverage::Wma
+TechnicalAnalysis::MovingAverage::Macd
 TechnicalAnalysis::MovingAverage::KaMA
 TechnicalAnalysis::Momentum::Rsi
 TechnicalAnalysis::Momentum::Tsi
-TechnicalAnalysis::Momentum::Lane
+TechnicalAnalysis::Momentum::Lanea (Stochastics)
 ```
 
 Additional calculations on single Bars are defined as extension of `IB::Bar`:
@@ -112,6 +113,11 @@ zz = z.calculate :ema, period: 15
 * Weighted Moving Average
 ```ruby
 zz = z.calculate :wma, period: 15 
+```
+*  Moving Average Convergence Divergence
+```ruby
+zz = z.calculate :macd, signal: 9, fast: 12, slow: 24 
+zz = z.calculate :macd, period: 9, fast: 12, slow: 24 
 ```
 * Kaufman Moving Average
 ```ruby

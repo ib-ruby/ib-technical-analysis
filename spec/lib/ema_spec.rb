@@ -6,13 +6,12 @@ require 'main_helper'
 using TASupport
 
 
-RSpec.describe TechnicalAnalysis::MovingAverage::ExpMA do
+RSpec.describe TechnicalAnalysis::MovingAverage::Macd do
   before(:all) do
   end
   let( :input_data ){ read_sample_data.each }  #  Enumerator
-  let( :period ){ 10 }
 
-  context "dry test"  do
+  context "dry test"   do
     #
     let(:data) { [100, 200, 200, 500] }
     let(:expected)  { 298.4 }
@@ -37,13 +36,13 @@ RSpec.describe TechnicalAnalysis::MovingAverage::ExpMA do
     end
   end
 
-  context  "Enumerator.caclulate" do
+  context  "caclulatei MACD" do
     context "check Input data" do
       subject { input_data }
       its( :size ){ is_expected.to eq 43 }
     end
     context "apply Indicator" do 
-      subject { input_data.calculate( :ema, period: period ){ :close } }
+      subject { input_data.calculate( :ema, period: 4 ){ :close } }
 
       it { is_expected.to be_a Array }
       its( :size ){ is_expected.to eq 43 }

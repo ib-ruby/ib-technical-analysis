@@ -49,7 +49,7 @@ module  TASupport
     #
     #
     def calculate indicator= :ema,  **params
-      struct = if indicator.to_s[-2,2]=='ma'
+      struct = if indicator.to_s[-2,2]=='ma' || indicator.to_s == 'macd'
                  TechnicalAnalysis::MovingAverage.send :const_get, indicator.to_s.upcase 
                elsif indicator.to_s[-2,2]=='si' || indicator== :lane
                  TechnicalAnalysis::Momentum.send :const_get, indicator.to_s.upcase 
@@ -81,7 +81,10 @@ module  TASupport
         period = params[:period] || 10
         fast = params[:fast] || 3
         slow= params[:slow] || 3
-
+      when :macd
+        period = params[:period].presence || params[:signal].presence || 9
+        fast = params[:fast].presence || params[:short].presence || 12
+        slow= params[:slow].presence || params[:long].presence || 26
       end 
 
       # start (array of processed values) is updated in every iteration
@@ -107,6 +110,9 @@ module  TASupport
                             TechnicalAnalysis::MovingAverage::ExpMA.new period: period, strict: strict_mode
                           when :wma 
                             TechnicalAnalysis::MovingAverage::Wma.new period: period, strict: strict_mode
+                          when :macd
+                            TechnicalAnalysis::MovingAverage::Macd.new period: period, strict: strict_mode,
+                               fast: fast, slow: slow
                           when :kama
                             TechnicalAnalysis::MovingAverage::KaMA.new period: period, strict: strict_mode,
                                fast: fast, slow: slow
@@ -129,10 +135,10 @@ module  TASupport
                    end
           indicator_method.add_item(raw_data)
         else
-          indicator_method.add_item(d)
+          indicator_method.add_item(d)   # lane stochastics works with ohlc data
         end
 
-        next if indicator_method.current.nil? # creates a nil entry 
+        next if indicator_method.current.nil? # creates a nil entry
         value = indicator_method.current      # return this value
         ## data-format of the returned array-elements
         result =  if date_field.present?

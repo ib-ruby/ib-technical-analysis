@@ -26,23 +26,25 @@ module TechnicalAnalysis
         @smooth_constant = if block_given? 
                              yield period
                            else
-                             (2.0 / (period + 1.0))
+                             2.0 / (period + 1.0)
                            end
-        if !data.empty?
-          data.map{|d| add_item d }
-        end
+        data.map{|d| add_item d }  #  does nothing of data is empty
       end
 
       # adds item, calculates the ema, puts value to the buffer and returns the result
       def add_item  value
-        @queue << value
-        @queue.shift if @queue.size > @period
+           @queue << value
+           @queue.shift if @queue.size > @period
         if @buffer.empty?
           @buffer=[value.to_f]
         else
           prev_ema = @buffer.last
           current_value = value.to_f
+          # this is the incremential approach
+          # @buffer << (current_value * @smooth_constant ) + prev_ema * (1 - @smooth_constant)
+          #        it is identical to
           @buffer << (current_value - prev_ema) * @smooth_constant + prev_ema
+          # which is much easier to compute
         end
        current  #  return the last buffer value
       end

@@ -4,7 +4,7 @@ module TechnicalAnalysis
 
 
     class  Base
-      def initialize period: 15,  data: [], strict: true
+      def initialize period: 15,  data: [], strict: true, **parans
 
         raise "Period must be greater then one" if  period <= 1
         @period = period
@@ -15,18 +15,13 @@ module TechnicalAnalysis
         @buffer = []
       end
 
-      # adds item, calculates the ema, puts value to the buffer and returns the result
+      # adds item, calculates the ma, puts value to the buffer and returns the result
+      # needs to be overloaded
       def add_item  value
         @queue << value
         @queue.shift if @queue.size > @period
-        if @buffer.empty?
-          @buffer=[value.to_f]
-        else
-          prev_ema = @buffer.last
-          current_value = value.to_f
-          @buffer << (current_value - prev_ema) * @smooth_constant + prev_ema
-        end
-       current  #  return the last buffer value
+        @buffer << value
+        current  #  return the last buffer value
       end
 
       # returns the moving-average-buffer
@@ -39,7 +34,7 @@ module TechnicalAnalysis
       end
 
 
-      # returns the ema of the last computed item
+      # returns the ma of the last computed item
       def current 
          if @strict && warmup?
            nil
